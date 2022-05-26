@@ -1,0 +1,31 @@
+@import './font.css';
+@import './reset.css';
+
+:root {
+  --dcb: #ff693a;
+  --tablet-max-width: 1440px;
+  height: 100%;
+  max-width: var(--tablet-max-width);
+  overflow-x: hidden;
+}
+
+body {
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  align-items: center;
+}
+
+#portal {
+  display: flex;
+  justify-content: center;
+}
+
+.text-baemin100 {
+  color: var(--dcb);
+}
