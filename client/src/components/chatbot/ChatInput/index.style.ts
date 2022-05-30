@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
+const StyledMainPage = styled.div`
   display: flex;
   // flex-direction: row;
   flex-direction: column;
@@ -12,7 +12,7 @@ export const MainContainer = styled.div`
 `;
 
 // #ee4123
-export const ChatContainer = styled.div`
+const StyledChatContainer = styled.div`
   width: 400px;
   height: 80vh;
   border: 1px solid #000;
@@ -20,7 +20,7 @@ export const ChatContainer = styled.div`
   box-shadow: 5px 5px 5px -5px black;
 `;
 
-export const ChatHeader = styled.div`
+const StyledChatHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,3 +33,10 @@ export const ChatHeader = styled.div`
   border-radius: 15px 15px 0px 0px;
   box-shadow: 0 5px 5px -5px black;
 `;
+
+
+export default {
+  StyledMainPage,
+  StyledChatContainer,
+  StyledChatHeader,
+};

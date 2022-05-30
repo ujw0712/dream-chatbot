@@ -1,15 +1,26 @@
 import { FC } from 'react';
 
-import S from './index.style';
+import {
+  MainContainer,
+  ChatContainer,
+  ChatHeader,
+} from './index.style';
 
-const Main2Page: FC = () => {
+import Chat from '~/components/chatbot/Chat'
+
+const MainPage: FC = () => {
 
   return (
-    <S.StyledMainPage>
-      Dream Chat Bot
-
-    </S.StyledMainPage>
+    <MainContainer>
+      {/*<div>Dream Chat Bot</div>*/}
+      <ChatContainer>
+        <ChatHeader>
+          드림인사이트 개발팀
+        </ChatHeader>
+        <Chat/>
+      </ChatContainer>
+    </MainContainer>
   );
 };
 
-export default Main2Page;
+export default MainPage;
