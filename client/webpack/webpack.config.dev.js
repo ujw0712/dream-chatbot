@@ -13,7 +13,7 @@ module.exports = {
         use: ['style-loader', 'css-loader',]
       },
       {
-        test: /\.(svg|png|jpg|gif)$/i,
+        test: /\.(svg|png|jpg|jpeg|gif)$/i,
         loader: 'url-loader',
         options: {
           limit: 8 * 1024,
