@@ -15,7 +15,7 @@ const MainPage: FC = () => {
       {/*<div>Dream Chat Bot</div>*/}
       <ChatContainer>
         <ChatHeader>
-          드림인사이트 개발팀
+          드림인사이트 개발팀 &gt; ADMAKER
         </ChatHeader>
         <Chat/>
       </ChatContainer>

@@ -7,7 +7,7 @@ export const Item = styled.div`
   margin-bottom: 10px;
 `;
 
-export const BotProfile = styled.div`
+export const Profile = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -17,19 +17,19 @@ export const BotProfile = styled.div`
   background: center / contain no-repeat url(${Bot});
 `;
 
-export const BotName = styled.div`
-  font-size: 12px;
+export const Wrapper = styled.div`
+  width: 305px;
+`;
+
+export const Name = styled.div`
   margin: 5px 0px;
 `;
 
-export const BotMessage = styled.div`
+export const Message = styled.div`
   background: #F6F6F6;
   border-radius: 5px;
-  min-height: 30px;
   display: flex;
   align-items: center;
-  font-size: 12px;
-  padding: 5px 10px;
-  max-width: 600px;
+  padding: 10px;
   overflow-wrap: anywhere;
 `;
