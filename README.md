@@ -22,4 +22,8 @@
 
 > ### Pages
 
+<div align="center">
+
 ![](client/src/assets/img/main.png)
+
+</div>
