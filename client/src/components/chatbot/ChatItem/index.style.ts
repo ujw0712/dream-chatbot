@@ -31,5 +31,6 @@ export const Message = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
+  margin-bottom: 5px;
   overflow-wrap: anywhere;
 `;

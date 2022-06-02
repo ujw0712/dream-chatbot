@@ -32,7 +32,7 @@ const Button = styled.button<{ size: Size }>`
   color: #000;
   border-radius: 16px;
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
   &:hover {
     background: #000;
     color: #fff;

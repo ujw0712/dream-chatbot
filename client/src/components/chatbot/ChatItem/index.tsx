@@ -21,6 +21,7 @@ const ChatItem: FC = () => {
     { text: '회원 관리', value: 5 },
     { text: '설정 변경', value: 6 },
     { text: '스마트 편집', value: 7 },
+    { text: 'FAQ(자주 묻는 질문)', value: 8 },
   ];
 
 
@@ -30,22 +31,43 @@ const ChatItem: FC = () => {
   }
 
   return (
-    <Item>
-      <Profile/>
-      <Wrapper>
-        <Name>드림이</Name>
+    <div>
+
+      <Item>
+        <Profile/>
         <Wrapper>
-          <Message>👋 안녕하세요.<br/>아래 버튼을 클릭하면 자세한 안내를 도와드릴게요!</Message>
-          {MENU_GUIDE.map(data => (
+          <Name>드림이</Name>
+          <Wrapper>
+            <Message>👋 안녕하세요.<br/>아래 버튼을 클릭하면 자세한 안내를 도와드릴게요!</Message>
+            {MENU_GUIDE.map(data => (
               <Button size="sm"
-                key={data.value}
-                onClick={() => select(data.value)}
+                      key={data.value}
+                      onClick={() => select(data.value)}
               >{data.text}
               </Button>
             ))}
+          </Wrapper>
         </Wrapper>
-      </Wrapper>
-    </Item>
+      </Item>
+
+
+      <Item>
+        <Profile/>
+        <Wrapper>
+          <Name>드림이</Name>
+          <Wrapper>
+            <Message><strong>FAQ(자주 묻는 질문)</strong></Message>
+            {MENU_GUIDE.map(data => (
+              <Button size="sm"
+                      key={data.value}
+                      onClick={() => select(data.value)}
+              >{data.text}
+              </Button>
+            ))}
+          </Wrapper>
+        </Wrapper>
+      </Item>
+    </div>
   );
 };
 
