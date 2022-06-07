@@ -26,4 +26,5 @@
 
 ![](client/src/assets/img/main.png)
 
+![](client/src/assets/img/faq.png)
 </div>

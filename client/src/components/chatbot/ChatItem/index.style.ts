@@ -34,3 +34,16 @@ export const Message = styled.div`
   margin-bottom: 5px;
   overflow-wrap: anywhere;
 `;
+
+export const Options  = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  font-weight: bold;
+`;
+
+export const Option  = styled.a`
+  margin: 5px 0;
+  text-decoration: none;
+  color: #000;
+`;
