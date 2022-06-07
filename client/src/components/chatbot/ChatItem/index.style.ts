@@ -28,11 +28,19 @@ export const Name = styled.div`
 export const Message = styled.div`
   background: #F6F6F6;
   border-radius: 5px;
-  display: flex;
-  align-items: center;
   padding: 10px;
   margin-bottom: 5px;
   overflow-wrap: anywhere;
+`;
+
+export const NoData = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const Selected = styled.span`
+  font-weight: bold;
+  color: #ee4123;
 `;
 
 export const Options  = styled.div`
@@ -46,4 +54,13 @@ export const Option  = styled.a`
   margin: 5px 0;
   text-decoration: none;
   color: #000;
+`;
+
+export const EmailTextarea = styled.textarea`
+  width: 283px;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  resize: none;
 `;

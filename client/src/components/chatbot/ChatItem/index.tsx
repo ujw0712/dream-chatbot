@@ -6,8 +6,11 @@ import {
   Wrapper,
   Name,
   Message,
+  NoData,
+  Selected,
   Options,
   Option,
+  EmailTextarea,
 } from './index.style';
 
 import Button from '~/components/common/Button';
@@ -25,6 +28,23 @@ const ChatItem: FC = () => {
     { text: '스마트 편집', value: 7 },
     { text: 'FAQ(자주 묻는 질문)', value: 8 },
   ];
+
+  const MENU1 = [
+    {
+      text: '고정 배너 DB 영역에서 미노출',
+      url: 'https://www.notion.so/DB-d25fd616b50746d2a673e862b09f653a'
+    },
+    {
+      text: 'DB 팝업 적용',
+      url: 'https://www.notion.so/DB-55d211165c89445b8d189fb5d5944d2f'
+    },
+    {
+      text: 'DB 팝업 여러개 적용',
+      url: 'https://www.notion.so/DB-cc931f69f054447aa570f602826b7731'
+    },
+  ]
+
+  const MENU2 = []
 
   const FAQ_LIST = {
     '스마트편집': [
@@ -83,9 +103,6 @@ const ChatItem: FC = () => {
     ]
   }
 
-  const FAQ = Object.keys(FAQ_LIST)
-
-
   const select = async (value) => {
     // api
     console.log("> select - value : ", value)
@@ -129,7 +146,7 @@ const ChatItem: FC = () => {
         <Wrapper>
           <Name>드림이</Name>
           <Wrapper>
-            <Message>📢 FAQ(자주 묻는 질문)입니다.<br/>원하는 내용을 찾을 수 없다면 메일을 보내주세요!</Message>
+            <Message>📢 <Selected>FAQ(자주 묻는 질문)</Selected>입니다.<br/>원하는 내용을 찾을 수 없다면 메일을 보내주세요!</Message>
             { Object.keys(FAQ_LIST).map((data, index) => (
               <Options key={ index } className="faq">
                 <div>▶ { data }</div>
@@ -141,6 +158,61 @@ const ChatItem: FC = () => {
             <Button size="sm" onClick={() => back}>다시 선택하기 ↩</Button>
             <Button size="sm" onClick={() => reset}>처음부터 다시하기 ↩</Button>
             <Button size="sm" onClick={() => readySendMail}>🙏 개발팀에게 메일보내기 🙏</Button>
+          </Wrapper>
+        </Wrapper>
+      </Item>
+
+
+      <Item>
+        <Profile/>
+        <Wrapper>
+          <Name>드림이</Name>
+          <Wrapper>
+            <Message>📢 <Selected>스마트 편집 &gt; 에디터 활용</Selected>입니다.</Message>
+            <Options>
+              {MENU1.map((data, index) => (
+                <Option key={ index } href={data.url} target="_blank">❓ { data.text }</Option>
+              ))}
+            </Options>
+            <Button size="sm" onClick={() => back}>다시 선택하기 ↩</Button>
+            <Button size="sm" onClick={() => reset}>처음부터 다시하기 ↩</Button>
+            <Button size="sm" onClick={() => readySendMail}>👉 FAQ(자주 묻는 질문)로 가기</Button>
+          </Wrapper>
+        </Wrapper>
+      </Item>
+
+      <Item>
+        <Profile/>
+        <Wrapper>
+          <Name>드림이</Name>
+          <Wrapper>
+            <Message>📢 <Selected>스마트 편집 &gt; HTML</Selected>입니다.</Message>
+            <Options>
+              {
+                MENU2.length > 0
+                ? MENU2.map((data, index) => (
+                  <Option key={ index } href={data.url} target="_blank">❓ { data.text }</Option>
+                ))
+                : <NoData>데이터가 없습니다 ㅠ.ㅠ</NoData>
+              }
+            </Options>
+            <Button size="sm" onClick={() => back}>다시 선택하기 ↩</Button>
+            <Button size="sm" onClick={() => reset}>처음부터 다시하기 ↩</Button>
+            <Button size="sm" onClick={() => readySendMail}>👉 FAQ(자주 묻는 질문)로 가기</Button>
+          </Wrapper>
+        </Wrapper>
+      </Item>
+
+
+      <Item>
+        <Profile/>
+        <Wrapper>
+          <Name>드림이</Name>
+          <Wrapper>
+            <Message>개발팀에게 보낼 메시지를 적어주세요! ✍</Message>
+            <EmailTextarea></EmailTextarea>
+            <Button size="sm" onClick={() => reset}>처음부터 다시하기 ↩</Button>
+            <Button size="sm" onClick={() => back}>보내기 🙏</Button>
           </Wrapper>
         </Wrapper>
       </Item>
