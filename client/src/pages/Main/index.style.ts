@@ -11,7 +11,6 @@ export const MainContainer = styled.div`
   height: 100vh;
 `;
 
-// #ee4123
 export const ChatContainer = styled.div`
   width: 400px;
   height: 80vh;

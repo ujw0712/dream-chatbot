@@ -20,11 +20,8 @@ const heightMap: { [key in Size]: string } = {
   lg: '55px',
 };
 
-const Button = styled.button<{ size: Size }>`
+const Button = styled.button`
   position: relative;
-  // height: ${({ size }) => heightMap[size]};
-  // width: ${({ size }) => widthMap[size]};
-  // font-size: ${({ size }) => fontSizeMap[size]};
   font-size: 16px;
   cursor: pointer;
   background: #fff;

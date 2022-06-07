@@ -11,7 +11,6 @@ const StyledMainPage = styled.div`
   height: 100vh;
 `;
 
-// #ee4123
 const StyledChatContainer = styled.div`
   width: 400px;
   height: 80vh;

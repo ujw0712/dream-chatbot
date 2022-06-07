@@ -40,7 +40,7 @@ export const NoData = styled.div`
 
 export const Selected = styled.span`
   font-weight: bold;
-  color: #ee4123;
+  color: red;
 `;
 
 export const Options  = styled.div`
