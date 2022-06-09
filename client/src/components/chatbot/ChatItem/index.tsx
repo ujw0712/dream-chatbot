@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect } from 'react';
 
 import {
   Item,
@@ -16,15 +16,13 @@ import {
 import Button from '~/components/common/Button';
 
 interface Props {
-  list: object[];
+  data: {
+    isBot: boolean,
+    msg: string,
+  };
 }
 
-const ChatItem: FC<Props> = ({ list }) => {
-
-  console.log("> list : ", list)
-  // const [list] = useState(1)
-  // console.log("> list : ", list)
-
+const ChatItem: FC<Props> = (props) => {
   let currentValue = []
   // console.log("> data : ", data)
 
@@ -47,20 +45,21 @@ const ChatItem: FC<Props> = ({ list }) => {
 
   return (
     <div>
-
       <Item>
         <Profile/>
         <Wrapper>
           <Name>드림이</Name>
           <Wrapper>
-            <Message>👋 안녕하세요.<br/>아래 버튼을 클릭하면 자세한 안내를 도와드릴게요!</Message>
-            {list.map((data, index) => (
-              <Button key={ index } onClick={() => select(data.value)}>{ data.text }</Button>
-            ))}
+            <Message>
+              {
+                props.data.msg.split('\n').map( line => {
+                  return (<span>{line}<br/></span>)
+                })
+              }
+            </Message>
           </Wrapper>
         </Wrapper>
       </Item>
-
 
       {/*<Item>*/}
       {/*  <Profile/>*/}
