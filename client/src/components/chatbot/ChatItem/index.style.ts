@@ -38,11 +38,6 @@ export const NoData = styled.div`
   justify-content: center;
 `;
 
-export const Selected = styled.span`
-  font-weight: bold;
-  color: red;
-`;
-
 export const Options  = styled.div`
   display: flex;
   flex-direction: column;

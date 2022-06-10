@@ -1,14 +1,16 @@
-import { FC, useState } from 'react';
+import { FC, useRef, useCallback, useState, useEffect } from 'react';
 
 import {
   ChatWrap,
   ChatItems,
+  ButtonContainer,
+  NoData,
+  Selected,
 } from './index.style';
 
 import ChatItem from '~/components/chatbot/ChatItem'
 import UserChatItem from '~/components/chatbot/UserChatItem'
-import {Option} from "~/components/chatbot/ChatItem/index.style";
-// import ChatInput from '~/components/chatbot/ChatInput'
+import SelectionUrl from '~/components/chatbot/SelectionUrl'
 
 
 import { data } from '~/assets/data';
@@ -21,33 +23,43 @@ interface Props {
   url: string,
 }
 
-const WELCOME_MAG = `👋 안녕하세요.\n 아래 버튼을 클릭하면 자세한 안내를 도와드릴게요!`
-const FAQ_MSG = `📢 <Selected>FAQ(자주 묻는 질문)</Selected>입니다.\n 원하는 내용을 찾을 수 없다면 메일을 보내주세요!`
-const MSG = (v) => `📢 ${v}에 대한 내용이에요!`
-// const MSG = (v) => `📢 <Selected>${v}</Selected>입니다.`
+// const MSG = (v) => `📢 <Selected>${v}</Selected>에 대한 내용이에요!`
+const MAG_WELCOME = `👋 안녕하세요.\n 아래 버튼을 클릭하면 자세한 안내를 도와드릴게요!`
+const MSG_FAQ = `📢 <Selected>FAQ(자주 묻는 질문)</Selected>입니다.\n 원하는 내용을 찾을 수 없다면 메일을 보내주세요!`
+const MSG_AGAIN = `아래 버튼을 클릭하면 자세한 안내를 도와드릴게요!`
+const AGAIN = `다시 선택하기 ↩`
+const INIT = `처음부터 다시하기 ↩`
+const FAQ = `👉 FAQ(자주 묻는 질문)로 가기`
+
 
 const Chat: FC = () => {
-
-  let [chatList, setChatList] = useState([{isBot: true, msg: WELCOME_MAG},])
-  let [listForSelect, setListForSelect] = useState(data)
-  // data
-  // chatList = [
-  //   {isBot: true, msg: WELCOME_MAG},
-  // ]
-
-  const initList = data
-
-  const getSelect = (v) => {
-    console.log("> getSelect - v : ", v)
+  const MSG = (v) => {
+    return (
+      `📢 <Selected>${v}</Selected>에 대한 내용이에요!`
+    )
   }
 
-  // listForSelect = data
+  let [chatList, setChatList] = useState([{isBot: true, msg: MAG_WELCOME}])
+  let [listForSelect, setListForSelect] = useState(data)
+
+
+  useEffect(() => {
+    scrollToBottom()
+  })
+
+  const scrollRef = useRef();
+  const scrollToBottom = () => {
+    // @ts-ignore
+    scrollRef.current.scrollIntoView({ behavior: 'smooth'});
+  }
+
+  const init = () => {
+    setChatList([{isBot: true, msg: MAG_WELCOME}])
+    setListForSelect(data)
+  }
 
   const select = (_data) => {
-    chatList.push({
-      isBot: false,
-      msg: _data.text,
-    })
+    chatList.push({isBot: false, msg: _data.text})
     if (_data.hasOwnProperty('children')) {
       chatList.push({
         isBot: true,
@@ -55,34 +67,80 @@ const Chat: FC = () => {
       })
     }
     setChatList(chatList)
-    console.log("> chatList.length : ", chatList.length)
-
     // @ts-ignore
     setListForSelect(data.find(l => l.value === _data.value).children)
+  }
+
+  const again = () => {
+    chatList.push({isBot: false, msg: AGAIN})
+    chatList.push({isBot: true, msg: MSG_AGAIN,})
+    setChatList(chatList)
+    setListForSelect(data)
+  }
+
+  const faqList = () => {
+    return data.find(d => d.value === 8000)
   }
 
   return (
     <ChatWrap>
       <ChatItems>
-        {/*<ChatItem data={data} />*/}
-        {/*{data && data.map(list => (*/}
-        {/*  // chatData={ data } getSelect={ getSelect }*/}
-        {/*  <ChatItem key={ list.value } list={list.children} />*/}
-        {/*))}*/}
         {chatList.map((data, index) => (
-          // chatData={ data } getSelect={ getSelect }
           data.isBot
-            ? <ChatItem key={ `chat${index}` } data={data} />
-            : <UserChatItem key={ `chat${index}` } data={data} />
+            ? (
+              // @ts-ignore
+              <ChatItem key={index} data={data} />
+            )
+            : (
+              // @ts-ignore
+              <UserChatItem key={index} data={data} />
+            )
         ))}
 
-        <div>
-          {listForSelect.map(data => (
-            <Button key={ data.value } onClick={() => select(data)}>{ data.text }</Button>
-          ))}
-        </div>
+
+
+        {
+          listForSelect.length === 0 && (
+            <>
+              <NoData>데이터가 없습니다 ㅠ.ㅠ</NoData>
+              <ButtonContainer>
+                <Button onClick={() => again()}>{AGAIN}</Button>
+                <Button onClick={() => init()}>{INIT}</Button>
+                <Button onClick={() => select(8000)}>{FAQ}</Button>
+              </ButtonContainer>
+            </>
+          )
+        }
+
+        {
+          listForSelect.length > 0 && listForSelect[0].url && (
+            <>
+              {
+                // @ts-ignore
+                <SelectionUrl list={listForSelect}/>
+              }
+              <ButtonContainer>
+                <Button onClick={() => again()}>{AGAIN}</Button>
+                <Button onClick={() => init()}>{INIT}</Button>
+                <Button onClick={() => select(8000)}>{FAQ}</Button>
+              </ButtonContainer>
+            </>
+          )
+        }
+
+        {
+          listForSelect.length > 0 && !listForSelect[0].url && (
+            <ButtonContainer>
+              {
+                listForSelect.map(data => (
+                  <Button key={ data.value } onClick={() => select(data)}>{ data.text }</Button>
+                ))
+              }
+            </ButtonContainer>
+          )
+        }
       </ChatItems>
-      {/*<ChatInput/>*/}
+      <div ref={scrollRef}></div>
     </ChatWrap>
   );
 };

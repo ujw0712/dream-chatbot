@@ -30,5 +30,5 @@ export const ChatHeader = styled.div`
   color: #fff;
   border-bottom: 1px solid #000;
   border-radius: 15px 15px 0px 0px;
-  box-shadow: 0 5px 5px -5px black;
+  // box-shadow: 0 5px 5px -5px black;
 `;
